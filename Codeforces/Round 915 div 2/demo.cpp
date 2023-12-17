@@ -4,7 +4,7 @@ using namespace std;
 
 void solve()
 {
-    cout<<2<<endl;
+    
 }
 
 int main()
