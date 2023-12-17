@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "chrono": "cpp",
+        "tuple": "cpp",
+        "bitset": "cpp",
+        "algorithm": "cpp",
+        "format": "cpp"
+    }
+}
