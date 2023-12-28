@@ -15,7 +15,7 @@ void solve()
     ll fact = 2;
     while(mt2)
     {
-        unordered_map<int,int> m;
+        unordered_map<ll,ll> m;
         for(auto x:a)
         {
             m[x%fact]++;
