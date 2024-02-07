@@ -51,13 +51,25 @@ template<typename T, typename U> void p(pair<T, U> t){
 
 
 void solve() {
-    
+    ll n; cin>>n;
+    if(n%2)
+    {
+        cout<<0<<"\n";
+        return;
+    }
+    n /= 2;
+    // ll ans = 1;
+    // while(n--)
+    // {
+    //     ans *= 2;
+    // }
+    cout<<(1<<n)<<"\n";
 }
 
 int main() {
     FAST;
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--) solve();
     return 0;
 }

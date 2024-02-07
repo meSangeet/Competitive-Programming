@@ -51,7 +51,9 @@ template<typename T, typename U> void p(pair<T, U> t){
 
 
 void solve() {
-    
+    ll n,m; cin>>n>>m;
+    ll temp = m/2;
+    cout<<temp*n - (m%2)/2<<"\n";
 }
 
 int main() {

@@ -51,7 +51,22 @@ template<typename T, typename U> void p(pair<T, U> t){
 
 
 void solve() {
-    
+    ll n; cin>>n;
+    vi a(n), b(n);
+    read(a);
+    read(b);
+    vector<pair<ll,ll>> vec;
+    rep(i,0,n)
+    {
+        vec.pub({a[i], b[i]});
+    }
+
+    sort(all(vec));
+
+    rep(i,0,n) cout<<vec[i].first<<" ";
+    cout<<"\n";
+    rep(i,0,n) cout<<vec[i].second<<" ";
+    cout<<"\n";
 }
 
 int main() {

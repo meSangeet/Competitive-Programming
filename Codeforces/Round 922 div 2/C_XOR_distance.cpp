@@ -51,7 +51,54 @@ template<typename T, typename U> void p(pair<T, U> t){
 
 
 void solve() {
-    
+    ll a,b,r; cin>>a>>b>>r;
+    vi A(64, 0);
+    vi B(64, 0);
+    // for(auto x:A) cout<<x<<" ";
+    // cout<<"\n";
+    // for(auto x:B) cout<<x<<" ";
+    // cout<<"\n";
+    ll p = max(a,b);
+    ll q = min(a,b);
+    ll ans = p-q;
+    for(int i = 0; i<64; i++)
+    {
+        if(((q>>i)&1))
+        {
+            A[i] = 1;
+        }
+
+        if(((p>>i)&1))
+        {
+            B[i] = 1;
+        }
+    }
+    vector<pair<ll,ll>> vec;
+    for(ll i = 60; i>=0; i--)
+    {
+        if((A[i] == 0 && B[i] == 1))
+        {
+            ll temp = (B[i]<<i) - (A[i]<<i);
+            vec.pub({temp,i});
+        }
+    }
+    // for(auto x:vec) cout<<x.first<<" "<<x.second<<endl;
+    ll val = 0;
+    for(auto x:vec)
+    {
+        ll temp = ans - x.first - x.first;
+        if(temp <= ans && temp >= 0)
+        {
+            ll tt = pow(2ll,x.second) + val;
+            if(tt <= r)
+            {
+                val = tt;
+                ans = temp;
+            }
+        }
+    }
+
+    cout<<ans<<"\n";
 }
 
 int main() {

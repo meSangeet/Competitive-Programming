@@ -48,10 +48,65 @@ template<typename T, typename U> void p(pair<T, U> t){
     p(t.S);
 }
 
+ll func(int ind, int last, vi& a, vi& p)
+{
+    if (ind == a.size()) {
+        // Base case: reached the beginning of the array
+        return 0;
+    }
+    ll cost1;
+    // Case 1: Block the current element
+    if(last != -1 && ind != 0)
+    cost1 = p[ind] - p[last]  + func(ind + 1, ind, a, p);
+    else{
+        cost1 = p[ind] + func(ind + 1, ind, a, p);
+    }
+    // Case 2: Do not block the current element
+    ll cost2 = func(ind + 1, last, a, p);
 
+    // Return the minimum cost between the two cases
+    return min(cost1, cost2);
+}
 
 void solve() {
-    
+    ll n; cin>>n;
+    vi a(n+1); vi p(n+1,0);
+    rep(i,0,n)
+    {
+        cin >> a[i];
+        p[i] = a[i] + p[i-1];
+    }
+
+    ll s = 0, e = p[n-1];
+
+    ll ans = e;
+    ll mid = s + (e-s)/2;
+
+    while(s < e)
+    {
+        ll ss = 0;
+        ll curr = 0;
+        for(int i = 0; i<n; i++)
+        {
+            curr += a[i];
+            if(curr > mid)
+            {
+                ss += a[i];
+                curr = 0;
+            }
+        }
+
+            if(curr <= mid)
+            {
+                ans = mid;
+                e = mid-1;
+            }else{
+                s = mid+1;
+            }
+
+            mid = s + (e-s)/2;
+    }
+    cout<<ans<<"\n";
 }
 
 int main() {

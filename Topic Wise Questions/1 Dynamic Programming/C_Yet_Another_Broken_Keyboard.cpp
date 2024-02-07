@@ -51,13 +51,35 @@ template<typename T, typename U> void p(pair<T, U> t){
 
 
 void solve() {
-    
+    ll a,b; cin>>a>>b;
+    string s; cin>>s;
+    unordered_map<char,int> m;
+    while(b--)
+    {
+        char p; cin>>p;
+        m[p] = 1;
+    }
+
+    ll count = 0;
+    ll ans = 0;
+    for(auto x:s)
+    {
+        if(m[x]) count++;
+        else{
+            ans += count*(count+1)/2;
+            count = 0;
+        }
+    }
+
+    ans += count*(count+1)/2;
+
+    p(ans);
 }
 
 int main() {
     FAST;
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--) solve();
     return 0;
 }
