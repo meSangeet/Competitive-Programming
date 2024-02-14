@@ -1,0 +1,1 @@
+{"name":"Local: demo","url":"c:\\Skills\\Competitive-Programming\\codechef\\starters121\\demo.cpp","tests":[{"id":1707927188314,"input":"3\n3\n5 7 7\n3\n5 5 7\n6\n0 1 2 4 8 16","output":"7\n7\n31"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Skills\\Competitive-Programming\\codechef\\starters121\\demo.cpp","group":"local","local":true}

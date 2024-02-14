@@ -1,0 +1,1 @@
+{"name":"Local: q2","url":"c:\\Skills\\Competitive-Programming\\codechef\\starters120\\q2.cpp","tests":[{"id":1707317287114,"input":"3\n1\n1\n2\n1 2\n3\n3 1 2","output":"1\n1 1\n1 1 2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Skills\\Competitive-Programming\\codechef\\starters120\\q2.cpp","group":"local","local":true}
