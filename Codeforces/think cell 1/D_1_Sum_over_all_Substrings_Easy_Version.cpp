@@ -48,51 +48,78 @@ template<typename T, typename U> void p(pair<T, U> t){
     p(t.S);
 }
 
-vector<500001> Primes;
-void SieveOfEratosthenes(int n)
+ll calc(ll sz)
 {
-    Primes[0] = 1;
-    for (int i = 3; i*i <= n; i += 2) {
-        if (Primes[i / 2] == 0) {
-            for (int j = 3 * i; j <= n; j += 2 * i)
-                Primes[j / 2] = 1;
+    ll ans = 0;
+    if(sz%2)
+        {
+            ll temp = sz-1;
+            temp/=2;
+            ans += (temp)*(temp+1);
+            ans+=sz/2+1;
+        }else{
+            ll temp=sz/2;
+            ans += temp*(temp+1);
+        }
+
+    return ans;
+}
+
+int func(string s, int i, int j)
+{
+    vi a(j-i+1,0);
+    int szz = j-i+1;
+    int ans = 0;
+    if(szz == 1)
+    {
+        if(s[i] == '1') return 1;
+    }
+    for(int p = i; p<=j; p++)
+    {
+        if(s[p] == '1')
+        {
+            if(p == i)
+            {
+                a[p] = 1;
+                ans++;
+            }else{
+                if(s[p-1] == 1)
+                {
+                    s[p] == 2;
+                }
+            }
         }
     }
 }
-int main() {
- // your code goes here
- int N = 1000001;
- SieveOfEratosthenes(N);
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int>arr;
-        for (int i = 1; i <= N; i++) {
-            if(n==1){
-                arr.push_back(1);
-                break;
-            }
-            else if(n==0){
-                break;
-            }
-            else if (i == 2){
-                arr.push_back(i);
-                n-=2;
-            }
-            else if (i % 2 == 1 && Primes[i / 2] == 0){
-                arr.push_back(i);
-                n-=2;
+void solve() {
+    ll n; cin>>n;
+    string s; cin>>s;
+    ll ans = 0;
+    ll curr = 0;
+    ll siz = 0;
+    ll lz = -1;
+    vi a(n,0);
+
+    for(int i = n-1; i>=0; i--)
+    {
+        if(s[i] == 1)
+        {
+            if(lz = -1)
+            {
+                lz = i;
+                ans++;
+            }else{
+                if(lz > i+1)
             }
         }
-        for(auto it : arr){
-            if(it==1){
-                cout<<1<<" ";
-            }
-            else cout<<it<<" "<<it<<" ";
-        }
-        cout<<endl;
     }
-    
+    cout<<ans<<"\n";
+}
+
+int main() {
+    FAST;
+    ll t = 1;
+    cin >> t;
+    while (t--) solve();
+    return 0;
 }

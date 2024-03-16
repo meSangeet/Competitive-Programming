@@ -85,7 +85,7 @@ void solve()
     cin >> n;
     vi a(n);
     read(a);
-    if(n<3)
+    if(n<=3)
     {
         if(n == 2)
         {

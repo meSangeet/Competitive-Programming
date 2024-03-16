@@ -48,51 +48,60 @@ template<typename T, typename U> void p(pair<T, U> t){
     p(t.S);
 }
 
-vector<500001> Primes;
-void SieveOfEratosthenes(int n)
-{
-    Primes[0] = 1;
-    for (int i = 3; i*i <= n; i += 2) {
-        if (Primes[i / 2] == 0) {
-            for (int j = 3 * i; j <= n; j += 2 * i)
-                Primes[j / 2] = 1;
+
+void solve() {
+    ll n,m,x; cin>>n>>m>>x;
+    vector<ll> v;
+    vector<char> cc;
+    for(int i = 0; i<m; i++)
+    {
+        ll p; char q; cin>>p>>q;
+        v.pub(p);
+        cc.pub(q);
+    }   
+    vector<ll> curr(n,0), ne(n,0), ce(n,0);
+    curr[x-1] = 1;
+    for(int i = 0; i<m; i++)
+    {
+        for(int j = 0; j<n; j++)
+        {
+            if(curr[j] == 1)
+            {
+                if(cc[i] == '0')
+                {
+                    ne[(j+v[i])%n] = 1;
+                }else if(cc[i] == '1')
+                {
+                    ne[(j-v[i]+n)%n] = 1;
+                }else{
+                     ne[(j+v[i])%n] = 1;
+                      ne[(j-v[i]+n)%n] = 1;
+                }
+            }
+        }
+            curr = ne;
+            ne = ce;
+    }
+    ll count = 0;
+    for(auto x:curr)
+    {
+        if(x) count++;
+    }
+    p(count);
+    for(int i = 0; i<n; i++)
+    {
+        if(curr[i] == 1)
+        {
+            cout<<i+1<<" ";
         }
     }
+    cout<<"\n";
 }
+
 int main() {
- // your code goes here
- int N = 1000001;
- SieveOfEratosthenes(N);
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int>arr;
-        for (int i = 1; i <= N; i++) {
-            if(n==1){
-                arr.push_back(1);
-                break;
-            }
-            else if(n==0){
-                break;
-            }
-            else if (i == 2){
-                arr.push_back(i);
-                n-=2;
-            }
-            else if (i % 2 == 1 && Primes[i / 2] == 0){
-                arr.push_back(i);
-                n-=2;
-            }
-        }
-        for(auto it : arr){
-            if(it==1){
-                cout<<1<<" ";
-            }
-            else cout<<it<<" "<<it<<" ";
-        }
-        cout<<endl;
-    }
-    
+    FAST;
+    ll t = 1;
+    cin >> t;
+    while (t--) solve();
+    return 0;
 }

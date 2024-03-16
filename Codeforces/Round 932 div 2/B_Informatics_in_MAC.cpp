@@ -48,51 +48,88 @@ template<typename T, typename U> void p(pair<T, U> t){
     p(t.S);
 }
 
-vector<500001> Primes;
-void SieveOfEratosthenes(int n)
-{
-    Primes[0] = 1;
-    for (int i = 3; i*i <= n; i += 2) {
-        if (Primes[i / 2] == 0) {
-            for (int j = 3 * i; j <= n; j += 2 * i)
-                Primes[j / 2] = 1;
+
+
+void solve() {
+    ll n; cin>>n;
+    vi a(n);
+    bool flag = true;
+    ll count = 0;
+    unordered_map<ll,ll> m;
+    for(int i = 0; i<n; i++)
+    {
+        cin>>a[i];
+        if(a[i] == 0)
+        {
+            count++;
+            flag = false;
+            int p = 1;
         }
+        m[a[i]]++;
     }
-}
-int main() {
- // your code goes here
- int N = 1000001;
- SieveOfEratosthenes(N);
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int>arr;
-        for (int i = 1; i <= N; i++) {
-            if(n==1){
-                arr.push_back(1);
-                break;
-            }
-            else if(n==0){
-                break;
-            }
-            else if (i == 2){
-                arr.push_back(i);
-                n-=2;
-            }
-            else if (i % 2 == 1 && Primes[i / 2] == 0){
-                arr.push_back(i);
-                n-=2;
-            }
-        }
-        for(auto it : arr){
-            if(it==1){
-                cout<<1<<" ";
-            }
-            else cout<<it<<" "<<it<<" ";
-        }
-        cout<<endl;
+
+    if(count == 1)
+    {
+        cout<<-1<<"\n";
+        return;
     }
     
+    int p = 1;
+
+    if(flag)
+    {
+        cout<<n<<"\n";
+        for(int i = 1; i<=n; i++) cout<<i<<" "<<i<<"\n";
+        return;
+    }else{
+        while(m[p] >= 2)
+        {
+            p++;
+        }
+        if(m[p] == 1)
+        {
+            cout<<-1<<"\n";
+            return;
+        }
+    }
+
+    unordered_map<ll,ll> aa,bb;
+    int fi = -1;
+    bool f = true;
+    for(int i = 0; i<n; i++)
+    {
+        if(a[i] < p && f)
+        {
+            aa[a[i]]++;
+        }
+
+        if(f && aa.size() == p)
+        {
+            f = false;
+            fi = i+1;
+        }
+
+        if(!f && a[i] < p)
+        {
+            bb[a[i]]++;
+        }
+    }
+
+    if(bb.size() != p)
+    {
+        cout<<-1<<"\n";
+    }else{
+        cout<<2<<"\n";
+        cout<<1<<" "<<fi<<"\n";
+        cout<<fi+1<<" "<<n<<"\n";
+    }
+  
+}
+
+int main() {
+    FAST;
+    ll t = 1;
+    cin >> t;
+    while (t--) solve();
+    return 0;
 }

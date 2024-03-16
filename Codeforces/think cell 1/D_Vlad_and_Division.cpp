@@ -48,51 +48,45 @@ template<typename T, typename U> void p(pair<T, U> t){
     p(t.S);
 }
 
-vector<500001> Primes;
-void SieveOfEratosthenes(int n)
-{
-    Primes[0] = 1;
-    for (int i = 3; i*i <= n; i += 2) {
-        if (Primes[i / 2] == 0) {
-            for (int j = 3 * i; j <= n; j += 2 * i)
-                Primes[j / 2] = 1;
+
+
+void solve() {
+    ll n; cin>>n;
+    vi bi(31,0);
+    ll ans = 0;
+    map<ll,ll> m;
+    for(int i = 0; i<n; i++)
+    {
+        ll p; cin>>p;
+        ll temp = 0;
+
+        for(int j = 0; j<31; j++)
+        {
+            if((p>>j)&1)
+            {
+            }else{
+                temp += pow(2,j);
+            }
+        }
+
+        // cout<<p<<" "<<temp<<endl;
+        if(m[temp] > 0)
+        {
+            // cout<<"up\n";
+            m[temp]--;
+        }else{
+            // cout<<"down\n";
+            m[p]++;
+            ans++;
         }
     }
+        p(ans);
 }
+
 int main() {
- // your code goes here
- int N = 1000001;
- SieveOfEratosthenes(N);
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int>arr;
-        for (int i = 1; i <= N; i++) {
-            if(n==1){
-                arr.push_back(1);
-                break;
-            }
-            else if(n==0){
-                break;
-            }
-            else if (i == 2){
-                arr.push_back(i);
-                n-=2;
-            }
-            else if (i % 2 == 1 && Primes[i / 2] == 0){
-                arr.push_back(i);
-                n-=2;
-            }
-        }
-        for(auto it : arr){
-            if(it==1){
-                cout<<1<<" ";
-            }
-            else cout<<it<<" "<<it<<" ";
-        }
-        cout<<endl;
-    }
-    
+    FAST;
+    ll t = 1;
+    cin >> t;
+    while (t--) solve();
+    return 0;
 }
